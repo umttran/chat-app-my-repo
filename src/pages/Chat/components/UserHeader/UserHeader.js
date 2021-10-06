@@ -10,7 +10,7 @@ function UserHeader() {
     <div className="user-header">
       <div className="user-header-pp"></div>
       <div className="user-header-name">
-        <h3></h3>
+      
       </div>
       <div className="user-header-options">
       </div>
