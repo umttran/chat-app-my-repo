@@ -1,8 +1,7 @@
 import React, { useContext, useState } from "react";
-import { Redirect, useLocation, useHistory } from "react-router-dom";
+import { Redirect, useLocation } from "react-router-dom";
 import "./Login.css";
 
-import Input from "../Chat/components/Input";
 import { UserContext } from "../../context/login";
 
 function Login() {
