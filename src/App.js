@@ -13,17 +13,11 @@ function App() {
 
   const [selectedUser, setSelectedUser] = useState((null));
 
-  // 17:21 ////////////////////////////////
   const [userList, setUserList] = useState(mockUsers.users);
   
 
-  // const selectUser = (userId) => {
-  //   const user = mockUsers.users.find(user => user.id === userId)
-  //   setSelectedUser(user)
-  // }
 
   const login = (user) => {
-    // const user = {user};
     setUser(user);
     localStorage.setItem("username", JSON.stringify(user));
   };
