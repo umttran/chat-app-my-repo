@@ -10,7 +10,6 @@ import UserList from "./components/UserList";
 
 import "./Chat.css";
 import { UserContext } from "../../context/login";
-// import { UserContext } from "../../context/login";
 
 function Chat() {
   const userNameFromStorage = localStorage.getItem("username");
