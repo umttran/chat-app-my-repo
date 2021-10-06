@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "./SearchInput.css"
 
-function SearchInput() {
+function SearchInput( {handleOnChange} ) 
+  {
+
   return (
     <div className="search-input">
-      <input placeholder="Search"></input>
+      <input type="text" placeholder="Find User..."
+        onChange={(e) => {
+          handleOnChange(e.target.value);
+        }}
+      />
     </div>
   )
 }

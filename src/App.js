@@ -1,13 +1,92 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import Routes from './routes';
+import { UserContext } from './context/login';
+
+import mockUsers from "../src/mock-users.json";
+
 import './App.css';
 
-import Chat from "./pages/Chat/Chat" 
+
 
 function App() {
+  const [user, setUser] = useState(null);
+
+  const [selectedUser, setSelectedUser] = useState((null));
+
+  // 17:21 ////////////////////////////////
+  const [userList, setUserList] = useState(mockUsers.users);
+  
+
+  // const selectUser = (userId) => {
+  //   const user = mockUsers.users.find(user => user.id === userId)
+  //   setSelectedUser(user)
+  // }
+
+  const login = (user) => {
+    // const user = {user};
+    setUser(user);
+    localStorage.setItem("username", JSON.stringify(user));
+  };
+
+  const logout = () => {
+    setUser(null);
+    localStorage.removeItem("username");
+  };
+
+  const handleSetSelectedUser = (userId) => {
+    const user = userList.find((u) => u.id === userId);
+    if(user) setSelectedUser(user);
+  }
+
+  const handleSendMessages = (messageText) => {
+    const newSelectedUser = {
+      ...selectedUser,
+      messages: [
+        ...selectedUser.messages,
+        {
+          id: Math.random(),
+          text: messageText,
+          sender: user.id,
+        },
+      ],
+    }
+    setSelectedUser(newSelectedUser);
+    const newUserList = userList.map((item) => {
+      if(item.id === selectedUser.id) 
+        return newSelectedUser;
+      else
+        return item;
+    });
+    setUserList(newUserList);
+  }
+  
+
+  useEffect(() => {
+    const userNameFromStorage = localStorage.getItem("username");
+
+    if(userNameFromStorage) {
+      const userObject = JSON.parse(userNameFromStorage);
+      setUser(userObject);
+    }
+  }, []);
+
+
   return (
-    <div className="App">
-      <Chat />
-    </div>
+    <UserContext.Provider
+      value={{
+        user,
+        selectedUser,
+        setSelectedUser: handleSetSelectedUser, 
+        userList,
+        login,
+        logout,
+        handleSendMessages,
+        // selectUser,
+      
+      }}
+    >
+    <Routes />
+    </UserContext.Provider>
   );
 }
 
