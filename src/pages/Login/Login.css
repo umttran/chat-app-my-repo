@@ -24,16 +24,16 @@
   text-align: center;
 }
 
-/* .login-form input {
+.login-form input {
   background-color: #F3F3F3;
   padding: 16px;
   outline: none;
   border: none;
-} */
+}
 
-/* ::placeholder {
+::placeholder {
   color: #BBBBBB;
-} */
+}
 
 .login-form button {
   padding: 16px;
