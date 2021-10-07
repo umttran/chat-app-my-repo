@@ -1,6 +1,7 @@
 .messages {
   flex: 1;
   padding: 56px 32px;
+  overflow: scroll;
 }
 
 .messages-incoming, .messages-outgoing {
